@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.prg//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.program.backend.dao.PetDao">
+    <select id="queryPet" resultType="com.program.backend.entity.Pet">
+        SELECT *
+        FROM pet
+        WHERE
+        pet_id = #{petId}
+    </select>
+<!--    <insert id="insertComment" parameterType="com.program.backend.entity.Comment">-->
+<!--        INSERT INTO-->
+<!--        comment(comment_id, user_id, comment_date, comment_content, posting_id)-->
+<!--        VALUES-->
+<!--        (#{commentId}, #{userId}, #{commentDate}, #{commentContent}, #{postingId})-->
+<!--    </insert>-->
+<!--    <delete id="deleteComment">-->
+<!--        DELETE FROM-->
+<!--        comment-->
+<!--        WHERE-->
+<!--        comment_id = #{commentId}-->
+<!--    </delete>-->
+<!--    <select id="queryReply" resultType="com.program.backend.entity.Reply">-->
+<!--        SELECT reply_id, comment_id, user_id, reply_content, reply_date, reply_user-->
+<!--        FROM reply-->
+<!--        WHERE-->
+<!--        comment_id = #{commentId}-->
+<!--    </select>-->
+<!--    <insert id="insertReply" parameterType="com.program.backend.entity.Reply">-->
+<!--        INSERT INTO-->
+<!--        reply(reply_id, comment_id, user_id, reply_content, reply_date, reply_user)-->
+<!--        VALUES-->
+<!--        (#{replyId}, #{commentId}, #{userId}, #{replyContent}, #{replyDate}, #{replyUser})-->
+<!--    </insert>-->
+<!--    <delete id="deleteReply">-->
+<!--    DELETE FROM-->
+<!--    reply-->
+<!--    WHERE-->
+<!--    reply_id = #{replyId}-->
+<!--    </delete>-->
+</mapper>

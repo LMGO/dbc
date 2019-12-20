@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.prg//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.program.backend.dao.CommentDao">
+    <select id="queryComment" resultType="com.program.backend.entity.Comment">
+        SELECT comment_id, user_id, comment_date, comment_content, posting_id
+        FROM comment
+        WHERE
+        posting_id = #{postingId}
+    </select>
+    <insert id="insertComment" parameterType="com.program.backend.entity.Comment">
+        INSERT INTO
+        comment(comment_id, user_id, comment_date, comment_content, posting_id)
+        VALUES
+        (#{commentId}, #{userId}, #{commentDate}, #{commentContent}, #{postingId})
+    </insert>
+    <delete id="deleteComment">
+        DELETE FROM
+        comment
+        WHERE
+        comment_id = #{commentId}
+    </delete>
+    <select id="queryReply" resultType="com.program.backend.entity.Reply">
+        SELECT reply_id, comment_id, user_id, reply_content, reply_date, reply_user
+        FROM reply
+        WHERE
+        comment_id = #{commentId}
+    </select>
+    <insert id="insertReply" parameterType="com.program.backend.entity.Reply">
+        INSERT INTO
+        reply(reply_id, comment_id, user_id, reply_content, reply_date, reply_user)
+        VALUES
+        (#{replyId}, #{commentId}, #{userId}, #{replyContent}, #{replyDate}, #{replyUser})
+    </insert>
+    <delete id="deleteReply">
+    DELETE FROM
+    reply
+    WHERE
+    reply_id = #{replyId}
+    </delete>
+    <select id="queryHead" resultType="java.lang.String">
+        SELECT user_head
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+    <select id="queryName" resultType="java.lang.String">
+        SELECT user_name
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+    <select id="likeCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM likenum
+        WHERE
+        posting_id = #{postingId}
+    </select>
+    <select id="EnglishChinese" resultType="java.lang.String">
+        SELECT pet_name
+        FROM pet
+        WHERE pet_id = #{petId}
+    </select>
+    <select id="ChineseEnglish" resultType="java.lang.String">
+        SELECT pet_id
+        FROM pet
+        WHERE pet_name = #{petName}
+    </select>
+    <select id="listPosting" resultType="com.program.backend.entity.Posting">
+        SELECT *
+        FROM posting
+    </select>
+    <select id="isLike" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM likenum
+        WHERE user_id = #{userId} and posting_id = #{postingId}
+    </select>
+    <select id="listPostingPic" resultType="com.program.backend.entity.Postingpic">
+        SELECT *
+        FROM postingpic
+        WHERE posting_id = #{postingId}
+    </select>
+    <select id="commentCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM comment
+        WHERE posting_id = #{postingId}
+    </select>
+    <select id="listRelativePosting" resultType="com.program.backend.entity.Posting">
+        SELECT *
+        FROM posting
+        WHERE pet_id = #{petId}
+    </select>
+    <select id="listMyPosting" resultType="com.program.backend.entity.Posting">
+        SELECT *
+        FROM posting
+        WHERE user_id = #{userId}
+    </select>
+    <insert id="insertLike" parameterType="com.program.backend.entity.Likenum">
+        INSERT INTO
+        likenum(user_id, posting_id)
+        VALUES(#{userId}, #{postingId})
+    </insert>
+    <delete id="deleteLike">
+        DELETE FROM
+        likenum
+        WHERE user_id = #{userId} and posting_id = #{postingId}
+    </delete>
+    <select id="myLike" resultType="com.program.backend.entity.Likenum">
+        SELECT *
+        FROM likenum
+        WHERE user_id = #{userId}
+    </select>
+    <select id="queryPosting" resultType="com.program.backend.entity.Posting">
+        SELECT *
+        FROM posting
+        WHERE posting_id = #{postingId}
+    </select>
+</mapper>
